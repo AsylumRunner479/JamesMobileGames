@@ -17,6 +17,11 @@ public class TouchInput : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetMouseButton(0))
+
+        {
+            Input.GetTouch(0);
+        }
         if (Input.touchCount == 0)
         {
             meshRenderer.material.color = Color.red;
@@ -24,7 +29,9 @@ public class TouchInput : MonoBehaviour
         for (int i = 0; i < Input.touchCount; i++)
         {
             Touch touch = Input.GetTouch(i);
+            
             Ray ray = InputCamera.ScreenPointToRay(touch.position);
+
             if (Physics.Raycast(ray, out RaycastHit hit))
             {
                 if (hit.collider.gameObject == gameObject)
@@ -33,6 +40,7 @@ public class TouchInput : MonoBehaviour
                 }
             }
         }
+        
     }
     
 }
